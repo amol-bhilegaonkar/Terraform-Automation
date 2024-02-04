@@ -48,7 +48,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    dir("Terraform-Automation") {
+                    dir("$repoDir") {
                         // Change to the cloned repository directory
                         sh "terraform init"
                     }
@@ -59,7 +59,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    dir("Terraform-Automation") {
+                    dir("$repoDir") {
                         sh "pwd"
                         // Change to the cloned repository directory
                         sh "terraform plan -var-file=${params.TF_VAR_FILE} -out=tfplan"
@@ -71,7 +71,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    dir("Terraform-Automation") {
+                    dir("$repoDir") {
                         // Change to the cloned repository directory
                         sh "terraform apply -var-file=${params.TF_VAR_FILE} tfplan"
                     }
