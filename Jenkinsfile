@@ -15,7 +15,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'TF_VAR_FILE', defaultValue: 'dev.tfvars', description: 'Path to Terraform variable file')
+        string(name: 'TF_VAR_FILE', defaultValue: '', description: 'Path to Terraform variable file')
         string(name: 'GIT_REPO', defaultValue: 'https://github.com/amol-bhilegaonkar/Terraform-Automation.git', description: 'Git repository URL')
     }
 
@@ -48,7 +48,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    dir("your-repo-directory") {
+                    dir("Terraform-Automation") {
                         // Change to the cloned repository directory
                         sh "terraform init"
                     }
@@ -59,7 +59,8 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    dir("your-repo-directory") {
+                    dir("Terraform-Automation") {
+                        sh "pwd"
                         // Change to the cloned repository directory
                         sh "terraform plan -var-file=${params.TF_VAR_FILE} -out=tfplan"
                     }
@@ -70,7 +71,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    dir("your-repo-directory") {
+                    dir("Terraform-Automation") {
                         // Change to the cloned repository directory
                         sh "terraform apply -var-file=${params.TF_VAR_FILE} tfplan"
                     }
