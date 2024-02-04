@@ -12,7 +12,7 @@ pipeline {
         stage('terraform version') {
             steps {
                 script {
-                    terraform -v
+                    sh "terraform -v"
                 }
             }
         }
