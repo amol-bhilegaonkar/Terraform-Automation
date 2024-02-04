@@ -1,6 +1,9 @@
-def fileExists(filePath) {
-    def file = new File(filePath)
-    file.exists()
+def isDirectoryWithName(dirName) {
+    // List the contents of the current directory
+    def contents = sh(script: 'ls', returnStdout: true).trim()
+
+    // Check if the directory exists in the list
+    return contents.split('\n').contains(dirName)
 }
 
 pipeline {
@@ -12,6 +15,11 @@ pipeline {
     }
 
     // Function to check if a directory exists
+    def fileExists(filePath) {
+        def file = new File(filePath)
+        file.exists()
+    }
+
     stages {
         stage('Print Statement') {
             steps {
@@ -27,7 +35,7 @@ pipeline {
                     def repoDir = "Terraform-Automation"
 
                     // Check if the directory exists
-                    if (fileExists(repoDir)) {
+                    if (isDirectoryWithName(repoDir)) {
                         echo "Directory '$repoDir' exists. Performing git pull."
                         sh "cd $repoDir && git pull origin main"
                     } else {
