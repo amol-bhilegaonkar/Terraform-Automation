@@ -5,6 +5,11 @@ pipeline {
     string(name: 'TF_VAR_FILE', defaultValue: 'path/to/your/variable/file.tfvars', description: 'Path to Terraform variable file')
     string(name: 'GIT_REPO', defaultValue: 'https://github.com/amol-bhilegaonkar/Terraform-Automation.git', description: 'Git repository URL')
   }
+    // Function to check if a directory exists
+def fileExists(filePath) {
+    def file = new File(filePath)
+    file.exists()
+}
 
   stages {
     stage('Print Statement') {
@@ -30,13 +35,6 @@ pipeline {
         }
       }
     }
-
-    // Function to check if a directory exists
-    def fileExists(filePath) {
-      def file = new File(filePath)
-      file.exists()
-    }
-
     stage('Terraform Init') {
       steps {
         script {
