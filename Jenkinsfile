@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'TF_VAR_FILE', defaultValue: 'path/to/your/variable/file.tfvars', description: 'Path to Terraform variable file')
+        string(name: 'TF_VAR_FILE', defaultValue: 'dev.tfvars', description: 'Path to Terraform variable file')
         string(name: 'GIT_REPO', defaultValue: 'https://github.com/amol-bhilegaonkar/Terraform-Automation.git', description: 'Git repository URL')
     }
 
