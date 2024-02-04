@@ -9,5 +9,12 @@ pipeline {
                 }
             }
         }
+        stage('terraform version') {
+            steps {
+                script {
+                    terraform -v
+                }
+            }
+        }
     }
 }
