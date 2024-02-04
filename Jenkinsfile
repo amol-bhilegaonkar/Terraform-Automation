@@ -24,7 +24,7 @@ pipeline {
         stage('Git clone') {
             steps {
                 script {
-                    def repoDir = 'Terraform-Automation'
+                    def repoDir = "Terraform-Automation"
 
                     // Check if the directory exists
                     if (fileExists(repoDir)) {
