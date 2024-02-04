@@ -6,18 +6,17 @@ def isDirectoryWithName(dirName) {
     return contents.split('\n').contains(dirName)
 }
 
+def fileExists(filePath) {
+    def file = new File(filePath)
+    file.exists()
+}
+
 pipeline {
     agent any
 
     parameters {
         string(name: 'TF_VAR_FILE', defaultValue: 'dev.tfvars', description: 'Path to Terraform variable file')
         string(name: 'GIT_REPO', defaultValue: 'https://github.com/amol-bhilegaonkar/Terraform-Automation.git', description: 'Git repository URL')
-    }
-
-    // Function to check if a directory exists
-    def fileExists(filePath) {
-        def file = new File(filePath)
-        file.exists()
     }
 
     stages {
