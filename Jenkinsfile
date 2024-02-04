@@ -6,11 +6,6 @@ pipeline {
     string(name: 'GIT_REPO', defaultValue: 'https://github.com/amol-bhilegaonkar/Terraform-Automation.git', description: 'Git repository URL')
   }
     // Function to check if a directory exists
-def fileExists(filePath) {
-    def file = new File(filePath)
-    file.exists()
-}
-
   stages {
     stage('Print Statement') {
       steps {
@@ -73,4 +68,8 @@ def fileExists(filePath) {
       }
     }
   }
+  def fileExists(filePath) {
+    def file = new File(filePath)
+    file.exists()
+ }
 }
